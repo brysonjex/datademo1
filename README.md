@@ -20,6 +20,9 @@ It also runs `scripts/benford_analysis.py` and writes output files to `benford_o
 - `benford_detail.csv`: per-digit counts and proportions per numeric column.
 - `benford_summary.csv`: chi-square and MAD per numeric column.
 
+To generate an Excel report with charts, run `scripts/benford_excel_report.py`. It writes
+`benford_output/benford_report.xlsx` containing formatted tables and charts using UVU colors.
+
 ### How to run
 
 1. Push changes to `je_samples.xlsx` (or run the workflow manually via **Actions → JE Sample Analysis → Run workflow**).
@@ -31,4 +34,5 @@ It also runs `scripts/benford_analysis.py` and writes output files to `benford_o
 python -m pip install -r requirements.txt
 python scripts/analyze_je_samples.py --input je_samples.xlsx --output analysis_output
 python scripts/benford_analysis.py --input je_samples.xlsx --output benford_output
+python scripts/benford_excel_report.py --input je_samples.xlsx --output benford_output/benford_report.xlsx
 ```
