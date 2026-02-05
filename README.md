@@ -14,9 +14,11 @@ The workflow runs `scripts/analyze_je_samples.py` and writes output files to `an
 - `<sheet>_numeric_stats.csv`: numeric summary stats.
 - `<sheet>_date_ranges.csv`: date range summaries.
 
-It also runs `scripts/benford_analysis.py` and writes an output file to `benford_output/`:
+It also runs `scripts/benford_analysis.py` and writes output files to `benford_output/`:
 
-- `benford_report.md`: easy-to-read Benford report with explanations and digit tables.
+- `summary.md`: high-level Benford summary.
+- `benford_detail.csv`: per-digit counts and proportions per numeric column.
+- `benford_summary.csv`: chi-square and MAD per numeric column.
 
 ### How to run
 
