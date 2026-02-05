@@ -12,7 +12,7 @@ def find_date_columns(df: pd.DataFrame) -> list[str]:
             date_columns.append(col)
             continue
         if series.dtype == object:
-            parsed = pd.to_datetime(series, errors="coerce", infer_datetime_format=True)
+            parsed = pd.to_datetime(series, errors="coerce")
             if parsed.notna().sum() > 0:
                 date_columns.append(col)
     return date_columns
@@ -43,7 +43,7 @@ def summarize_sheet(df: pd.DataFrame, sheet_name: str, output_dir: Path) -> dict
     date_cols = find_date_columns(df)
     date_ranges = []
     for col in date_cols:
-        parsed = pd.to_datetime(df[col], errors="coerce", infer_datetime_format=True)
+        parsed = pd.to_datetime(df[col], errors="coerce")
         if parsed.notna().any():
             date_ranges.append(
                 {
