@@ -58,6 +58,15 @@ def summarize_sheet(df: pd.DataFrame, sheet_name: str, output_dir: Path) -> dict
     return summary
 
 
+def markdown_table(df: pd.DataFrame) -> str:
+    headers = [str(col) for col in df.columns]
+    rows = df.astype(str).values.tolist()
+    header_line = "| " + " | ".join(headers) + " |"
+    separator_line = "| " + " | ".join(["---"] * len(headers)) + " |"
+    row_lines = ["| " + " | ".join(row) + " |" for row in rows]
+    return "\n".join([header_line, separator_line, *row_lines])
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Analyze a JE Excel sample file.")
     parser.add_argument("--input", default="je_samples.xlsx", help="Path to the Excel file.")
@@ -84,7 +93,7 @@ def main() -> None:
         f"Input file: `{input_path}`",
         "",
         "## Sheet Overview",
-        summary_df.to_markdown(index=False),
+        markdown_table(summary_df),
         "",
         "## Outputs",
         "- `sheet_summary.csv`: row/column counts per sheet",
