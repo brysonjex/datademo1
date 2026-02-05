@@ -6,6 +6,7 @@ on:
     paths:
       - "je_samples.xlsx"
       - "scripts/analyze_je_samples.py"
+      - "scripts/benford_analysis.py"
       - "requirements.txt"
       - ".github/workflows/je_analysis.yml"
 
@@ -29,9 +30,16 @@ jobs:
       - name: Run analysis
         run: |
           python scripts/analyze_je_samples.py --input je_samples.xlsx --output analysis_output
+          python scripts/benford_analysis.py --input je_samples.xlsx --output benford_output
 
       - name: Upload analysis output
         uses: actions/upload-artifact@v4
         with:
           name: je-analysis-output
           path: analysis_output
+
+      - name: Upload Benford analysis output
+        uses: actions/upload-artifact@v4
+        with:
+          name: je-benford-output
+          path: benford_output
